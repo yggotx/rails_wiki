@@ -1,0 +1,15 @@
+language: ruby
+rvm:
+- 2.1.2
+deploy:
+  provider: heroku
+  api_key:
+    secure: I0vtKTl2cCTDkOzWHwmcdy1oA+27PsM7r5kGPdDgkIo5gbE9w93pEWj+2J5j69WfxXqw4e/R2AqqY+2XZSxvbuVHIc58aBVa8GWG4OuvdHZBwlnXrhFr/34/vtgzgLFn4MWr2vGR+uxlLa79Gps13GYBbjYFv1rQKjj2LYjh9cA=
+  app: immense-mesa-7442
+  on:
+    repo: rivayama/rails_wiki
+addons:
+  postgresql: "9.3"
+before_script:
+  - psql -c 'create database travis_ci_test;' -U postgres
+  - cp config/database.yml.travis config/database.yml
